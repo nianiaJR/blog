@@ -1,0 +1,192 @@
+Index: nirvana-workspace/nirvana/debug/materialData/account.js
+===================================================================
+--- nirvana-workspace/nirvana/debug/materialData/account.js	(revision 130701)
++++ nirvana-workspace/nirvana/debug/materialData/account.js	(working copy)
+@@ -75,18 +75,18 @@
+                     ['00:10', '09:23', 2],
+                     ['12:24', '21:00', 3],
+                     ['22:01', '23:01', 2]
+-                ],
+-                '2011-01-11': [
+-                    ['00:10', '07:23', 2],
+-                    ['08:24', '11:00', 3],
+-                    ['12:01', '20:00', 2],
+-                    ['21:00', '22:00', 3]
+-                ],
+-                '2011-01-12': [
+-                    ['00:10', '09:23', 2],
+-                    ['12:24', '21:00', 3],
+-                    ['22:01', '23:01', 2]
+                 ]
++                // '2011-01-11': [
++                //     ['00:10', '07:23', 2],
++                //     ['08:24', '11:00', 3],
++                //     ['12:01', '20:00', 2],
++                //     ['21:00', '22:00', 3]
++                // ],
++                // '2011-01-12': [
++                //     ['00:10', '09:23', 2],
++                //     ['12:24', '21:00', 3],
++                //     ['22:01', '23:01', 2]
++                // ]
+             },
+             clks: 100,
+             shows: 200,
+Index: nirvana-workspace/nirvanaII/dep/fcui/0.0.2-beta.1/src/FcSchedule.js
+===================================================================
+--- nirvana-workspace/nirvanaII/dep/fcui/0.0.2-beta.1/src/FcSchedule.js	(revision 130701)
++++ nirvana-workspace/nirvanaII/dep/fcui/0.0.2-beta.1/src/FcSchedule.js	(working copy)
+@@ -80,16 +80,18 @@
+      * @inner
+      * @return {Array} 值全部为0的7*24数组
+      */
+-    function initValue() {
++    function initValue(lineNumbers) {
+         // 如果没有初始值，默认全部设为0，即全部不选中
+         var value = [];
+-        for (var i = 0; i < 7; i++) {
++        lineNumbers = lineNumbers?lineNumbers : 7
++        debugger;
++        for (var i = 0; i < lineNumbers; i++) {
+             var lineValue = [];
+             value.push(lineValue);
+ 
+             for (var j = 0; j < 24; j++) {
+ 
+-                lineValue.push(0);
++                lineValue.push(1);
+             }
+         }
+ 
+@@ -264,7 +266,8 @@
+             + '</div>';
+ 
+         var dayTexts = me.dayTexts;
+-        for (var i = 0; i < 7; i++) {
++        debugger;
++        for (var i = 0; i < dayTexts.length; i++) {
+             html.push(
+                 lib.format(
+                     dayTpl,
+@@ -307,8 +310,9 @@
+         html.push('<div id="', timeBId, '" class="', timeBClass, '">');
+ 
+         // 7天
++        debugger;
+         var lineClass = getClass(me, 'line');
+-        for (var i = 0; i < 7; i++) {
++        for (var i = 0; i < me.rawValue.length; i++) {
+ 
+             var lineId    = getId(me, 'line' + i);
+             html.push(
+@@ -375,7 +379,7 @@
+             }
+         });
+ 
+-        for (var i = 0; i < 7; i++) {
++        for (var i = 0; i < value.length && i < 7; i++) {
+             var statusArr = [];
+             // item dom
+             var lineEl = lib.g(getId(me, 'line' + i));
+@@ -386,7 +390,11 @@
+             for (var j = 0; j < 24; j++) {
+ 
+                 var item = lib.g(getId(me, 'time_' + i + '_' + j));
+-                var val  = value[i][j];
++                // var val  = value[i][j];
++                var val = 1;
++                if(value[i]!= null && value[i][j] != null){
++                    val = value[i][j];
++                }
+ 
+                 // 根据value,设置item的选中状态
+                 if (+val === 1) {
+@@ -1199,12 +1207,12 @@
+ 
+         for (var i = 0, len = inputs.length; i < len; i++) {
+             // 针对没有的属性，必须使用setAttribute设置
+-            if (!inputs[i][state]) {
+-                inputs[i].setAttribute(state, value);
+-            }
+-            else {
++            // if (!inputs[i][state]) {
++                // inputs[i].setAttribute(state, value);
++            // }
++            // else {
+                 inputs[i][state] = value;
+-            }
++            // }
+         }
+     }
+ 
+@@ -1219,12 +1227,12 @@
+         var inputs = hourHead.getElementsByTagName('input');
+         _.each(inputs, function (item) {
+             // 针对没有的属性，必须使用setAttribute设置
+-            if (!item[state]) {
+-                item.setAttribute(state, value);
+-            }
+-            else {
++            // if (!item[state]) {
++            //     item.setAttribute(state, value);
++            // }
++            // else {
+                 item[state] = value;
+-            }
++            // }
+         });
+     }
+ 
+@@ -1261,6 +1269,7 @@
+      */
+     function setHourReadonly(schedule, readonly) {
+         var timebody = lib.g(getId(schedule, 'time-body'));
++        debugger;
+         if (readonly) {
+             timebody.on('click', '.ui-schedule-time', function (e) {
+                 e.stopPropagation();
+@@ -1306,6 +1315,7 @@
+          * @protected
+          */
+         initOptions: function (options) {
++            debugger;
+             var properties = {};
+ 
+             lib.extend(properties, Schedule.defaultProperties, options);
+@@ -1315,11 +1325,11 @@
+             // 检测是否初始化rawValue值，没有则设置为默认
+             if (this.rawValue == null) {
+ 
+-                this.setRawValue(initValue());
++                this.setRawValue(initValue(options.rawValue.length));
+             }
+ 
+             if (this.unSelectedValue == null) {
+-                this.unSelectedValue = initValue();
++                this.unSelectedValue = initValue(options.rawValue.length);
+             }
+ 
+             if (this.rawInfo == null) {
+@@ -1377,7 +1387,7 @@
+                     shortcutHtml: getShortcutHtml(me)
+                 }
+             );
+-
++            debugger;
+             initBody(me);
+         },
+ 
+@@ -1473,7 +1483,12 @@
+             {
+                 name: 'readonly',
+                 paint: function (schedule, value) {
+-
++                    if(value){
++                        var timebody = lib.g(getId(schedule, 'time-body'));
++                        $(timebody).on('mouseover', function(event){
++                            window.alert("YES!");
++                        });
++                    }
+                     setDayCheckboxState(schedule, 'readonly', value);
+                     setHourCheckboxState(schedule, 'readonly', value);
+                     setHourReadonly(schedule, value);
