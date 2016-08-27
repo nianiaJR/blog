@@ -2,7 +2,6 @@
 title: 总结－阿里与百度实习面试
 date: 2015-3-12
 categories: Work
-slug: ali-baidu－intern-interview
 toc: true
 ---
 

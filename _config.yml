@@ -71,3 +71,5 @@ deploy:
   type: git
   repo: git@github.com:nianiaJR/nianiaJR.github.io.git
   branch: master
+
+duoshuo_shortname: niania
