@@ -5,9 +5,10 @@
 # Site
 title: niania在路上
 subtitle:
-description:
+description: 珍惜时光，但行好事
 author: Jerry Liang
-language:
+language: zh-Hans
+avatar: http://7xja3v.com1.z0.glb.clouddn.com/IMG_2713%E5%89%AF%E6%9C%AC.jpg
 timezone:
 
 # URL
@@ -15,6 +16,7 @@ timezone:
 url: http://www.liangjiarui.com
 root: /
 permalink: :year/:month/:day/:title/
+disqus_shortname: nianialjr
 permalink_defaults:
 
 # Directory
@@ -63,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

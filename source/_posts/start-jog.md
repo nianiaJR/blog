@@ -19,6 +19,4 @@ tags: running-summary
 
 ### 写在最后
 不仅是跑步，应当发现更多内心所向往的事，并开始实践它，让事情自然地发生，那么我们终将塑造美好，坚持做一个画面实践者，加油～！
-<div style="display: flex; width: 100%; height: 200px">
-<img style="flex: 1" src="http://7xja3v.com1.z0.glb.clouddn.com/IMG_0246.jpg"><img style="flex: 1; margin-left: 5px;" src="http://7xja3v.com1.z0.glb.clouddn.com/IMG_0098.jpg">
-</div>
+<img src="http://7xja3v.com1.z0.glb.clouddn.com/IMG_0246.jpg"><img src="http://7xja3v.com1.z0.glb.clouddn.com/IMG_0098.jpg">

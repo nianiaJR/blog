@@ -4,7 +4,7 @@ date: 2016-08-12
 categories: Life
 tags: 生活点滴
 ---
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=410042507&auto=1&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=410042507&auto=0&height=66"></iframe>
 
 <img src="http://7xja3v.com1.z0.glb.clouddn.com/graduate" style="text-align:center;">
 
